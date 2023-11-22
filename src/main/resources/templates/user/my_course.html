@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{user/head :: head}">
+
+</head>
+
+<body style="background: white;">
+	<div class="spinner-container">
+		<div class="spinner-border text-dark" role="status" style="width: 3rem; height: 3rem;">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+	<div class="loading">
+		<nav th:replace="~{user/navbar :: nav}"></nav>
+		<div class="container">
+			<div class="row">
+				<div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3 mb-2" role="alert">
+					<p class="text-center" th:text="${error}"></p>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<div th:if="${myCourses}" class="col-md-10 mt-5">
+					<div class="card shadow-lg bg-light" th:each="course : ${myCourses}" style="width: 20rem;">
+						<div class="card-body mx-2">
+							<h5 class="card-title fw-bold" th:text="'Course Name: '+${course.courseName}"></h5>
+							<p class="card-text" th:text="'Course Price: '+'₹'+${course.coursePrice}"></p>
+							<p class="card-text" th:text="'Order Id: '+${course.orderId}"></p>
+							<p class="card-text" th:text="'Payment Status: '+${course.status}"></p>
+							<div th:if="${course.status}" class="text-center">
+								<a th:href="@{/view-course-video?ci=}+${course.courseRandomId}"
+									class="btn btn-primary">Course Video</a>
+							</div>
+							<div th:unless="${course.status}">
+								<p class="text-center text-danger fw-bold">Please contact team</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div th:unless="${myCourses}" class="col-md-12">
+					<h4 class="text-center text-danger fw-bold mt-5">No Course</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="" th:src="@{/js/navigation.js}"></script>
+	<script src="" th:src="@{/js/job.js}"></script>
+</body>
+
+</html>

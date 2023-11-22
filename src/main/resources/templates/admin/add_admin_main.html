@@ -1,0 +1,41 @@
+<main>
+	<div class="container-fluid px-4">
+		<h1 class="mt-4 mb-3">Add Admin</h1>
+		<div class="row">
+			<div class="col-md-12">
+				<form action="/add-course" method="post">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+					<div class="d-flex justify-content-center mt-3 mb-3">
+						<div class="form-floating mb-3 col-md-5 mx-3">
+							<input type="text" class="form-control name" id="floatingInput" name="name"
+								placeholder="Name">
+							<label for="floatingInput">Name</label>
+						</div>
+						<div class="form-floating mb-3 col-md-5 mx-3">
+							<input type="email" class="form-control email disabled" id="floatingInput" name="email"
+								placeholder="Email">
+							<label for="floatingInput">Email</label>
+						</div>
+					</div>
+					<div class="d-flex justify-content-center mb-3 mt-2">
+						<div class="form-floating mb-3 col-md-5 mx-3">
+							<input type="password" class="form-control password" id="floatingInput" name="password"
+								placeholder="Password">
+							<label for="floatingInput">Password</label>
+						</div>
+						<div class="form-floating mb-3 col-md-5 mx-3">
+							<input type="password" class="form-control confirm_password" id="floatingInput" name="confirm_password"
+								placeholder="Confirm Password">
+							<label for="floatingInput">Confirm Password</label>
+						</div>
+					</div>
+					<div class="d-flex justify-content-center col-md-12 mt-5">
+							<button class="btn btn-primary text-uppercase fw-bold add_admin mx-3" type="submit">Save
+							</button>
+							<button class="btn btn-danger text-uppercase fw-bold mx-3" type="reset">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</main>

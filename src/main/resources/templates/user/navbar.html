@@ -1,0 +1,188 @@
+<nav class="navbar navbar-expand-lg bg-light sticky-top">
+	<div class="container-fluid">
+		<a class="navbar-brand mx-4" href="/dashboard"><img src="" th:src="@{/images/logo.png}"
+				class="img-fluid rounded w-50 h-50"></a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+			aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+			<ul th:if="${title} == 'Jobs'" class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link fs-6 text-dark mx-3" href="/dashboard">Home</a>
+				</li>
+				<li class="nav-item dropstart">
+					<a class="nav-link dropstart-toggle fs-6 text-dark" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<div th:if="${profile} != null">
+							<img class="rounded-circle img-fluid" th:src="@{'/profile/'+${profile}}" width="30px" height="25px">
+						</div>
+						<div th:if="${profile} == null">
+							<i class="fa fa-user text-dark"></i>
+						</div>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/profile">Profile</a></li>
+						<li><a class="dropdown-item" href="/update-password">Update Passsword</a></li>
+						<li><a class="dropdown-item" href="/my-course">My Course</a></li>
+						<li><a class="dropdown-item" href="/logout">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul th:if="${title} == 'Profile'" class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link fs-6 text-dark mx-3" href="/dashboard">Home</a>
+				</li>
+				<li class="nav-item dropstart">
+					<a class="nav-link dropstart-toggle fs-6 text-dark" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<div th:if="${profile} != null">
+							<img class="rounded-circle img-fluid" th:src="@{'/profile/'+${profile}}" width="30px" height="25px">
+						</div>
+						<div th:if="${profile} == null">
+							<i class="fa fa-user text-dark"></i>
+						</div>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/profile">Profile</a></li>
+						<li><a class="dropdown-item" href="/update-password">Update Passsword</a></li>
+						<li><a class="dropdown-item" href="/my-course">My Course</a></li>
+						<li><a class="dropdown-item" href="/logout">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul th:if="${title} == 'Update Password'" class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link fs-6 text-dark mx-3" href="/dashboard">Home</a>
+				</li>
+				<li class="nav-item dropstart">
+					<a class="nav-link dropstart-toggle fs-6 text-dark" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<div th:if="${profile} != null">
+							<img class="rounded-circle img-fluid" th:src="@{'/profile/'+${profile}}" width="30px" height="25px">
+						</div>
+						<div th:if="${profile} == null">
+							<i class="fa fa-user text-dark"></i>
+						</div>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/profile">Profile</a></li>
+						<li><a class="dropdown-item" href="/update-password">Update Passsword</a></li>
+						<li><a class="dropdown-item" href="/my-course">My Course</a></li>
+						<li><a class="dropdown-item" href="/logout">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul th:if="${title}== 'Dashboard'" class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link fs-6 text-dark" href="/dashboard">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link link fs-6 text-dark" href="javascript:void(0);"
+						onclick="scrollToSection('about_us')">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link link fs-6 text-dark" href="javascript:void(0);"
+						onclick="scrollToSection('job_page')">Course</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link link fs-6 text-dark" href="javascript:void(0);"
+						onclick="scrollToSection('contact')">Contact</a>
+				</li>
+				<li class="nav-item dropstart">
+					<a class="nav-link dropstart-toggle fs-6 text-dark" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<div th:if="${profile} != null">
+							<img class="rounded-circle img-fluid" th:src="@{'/profile/'+${profile}}" width="30px" height="25px">
+						</div>
+						<div th:if="${profile} == null">
+							<i class="fa fa-user text-dark"></i>
+						</div>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/profile">Profile</a></li>
+						<li><a class="dropdown-item" href="/update-password">Update Passsword</a></li>
+						<li><a class="dropdown-item" href="/my-course">My Course</a></li>
+						<li><a class="dropdown-item" href="/logout">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul th:if="${title} == 'Course' and ${profile} != null" class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link fs-6 text-dark mx-3" href="/dashboard">Home</a>
+				</li>
+				<li class="nav-item dropstart">
+					<a class="nav-link dropstart-toggle fs-6 text-dark" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<div >
+							<img class="rounded-circle img-fluid" th:src="@{'/profile/'+${profile}}" width="30px" height="25px">
+						</div>
+						<div th:if="${profile} == null">
+							<i class="fa fa-user text-dark"></i>
+						</div>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/profile">Profile</a></li>
+						<li><a class="dropdown-item" href="/update-password">Update Passsword</a></li>
+						<li><a class="dropdown-item" href="/my-course">My Course</a></li>
+						<li><a class="dropdown-item" href="/logout">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul th:if="${title} == 'Course Details' and ${profile} != null" class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link fs-6 text-dark mx-3" href="/dashboard">Home</a>
+				</li>
+				<li class="nav-item dropstart">
+					<a class="nav-link dropstart-toggle fs-6 text-dark" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<div >
+							<img class="rounded-circle img-fluid" th:src="@{'/profile/'+${profile}}" width="30px" height="25px">
+						</div>
+						<div th:if="${profile} == null">
+							<i class="fa fa-user text-dark"></i>
+						</div>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/profile">Profile</a></li>
+						<li><a class="dropdown-item" href="/update-password">Update Passsword</a></li>
+						<li><a class="dropdown-item" href="/my-course">My Course</a></li>
+						<li><a class="dropdown-item" href="/logout">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul th:if="${title} == 'My Course'" class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link fs-6 text-dark mx-3" href="/dashboard">Home</a>
+				</li>
+				<li class="nav-item dropstart">
+					<a class="nav-link dropstart-toggle fs-6 text-dark" href="#" role="button" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<div th:if="${profile} != null">
+							<img class="rounded-circle img-fluid" th:src="@{'/profile/'+${profile}}" width="30px" height="25px">
+						</div>
+						<div th:if="${profile} == null">
+							<i class="fa fa-user text-dark"></i>
+						</div>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="/profile">Profile</a></li>
+						<li><a class="dropdown-item" href="/update-password">Update Passsword</a></li>
+						<li><a class="dropdown-item" href="/my-course">My Course</a></li>
+						<li><a class="dropdown-item" href="/logout">Logout</a></li>
+					</ul>
+				</li>
+			</ul>
+			<ul th:if="${title} == 'Course' and ${profile} == null" class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link fs-6 text-dark mx-3" href="/login">Login</a>
+				</li>
+			</ul>
+			<ul th:if="${title} == 'Course Details' and ${profile} == null" class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link fs-6 text-dark mx-3" href="/login">Login</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>

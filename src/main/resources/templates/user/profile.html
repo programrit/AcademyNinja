@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{user/head :: head}">
+
+</head>
+
+<body >
+	<div class="spinner-container">
+		<div class="spinner-border text-dark" role="status" style="width: 3rem; height: 3rem;">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+	<div class="loading">
+	<nav th:replace="~{user/navbar :: nav}"></nav>
+	<div class="container loading">
+		<div class="row">
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+				<div class="card border-0 shadow rounded-3 my-5">
+					<div class="card-body p-4 p-sm-5">
+						<h5 class="card-title text-center mb-3 fw-bold fs-4">Profile</h5>
+						<form action="profile" method="post" enctype="multipart/form-data">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+							<div class="form-floating mb-3">
+								<input type="text" class="form-control name" id="floatingInput"
+									placeholder="Name" th:value="${data.name}" >
+								<label for="floatingInput">Name</label>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="email" class="form-control email disabled" disabled id="floatingInput"
+									placeholder="Email address" th:value="${data.email}">
+								<label for="floatingInput">Email address</label>
+							</div>
+							<div class="form-floating mb-3">
+								<input type="file" class="form-control profile" id="floatingInput"
+									placeholder="profile">
+								<label for="floatingInput">Profile</label>
+							</div>
+							<div class="d-grid">
+								<button class="btn btn-primary text-uppercase fw-bold update" type="submit">Update</button>
+							</div>
+							<div class="d-grid mt-3">
+								<button class="btn btn-danger text-uppercase fw-bold"
+									type="reset">Cancel</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<script src="" th:src="@{/js/job_seeker.js}"></script>
+</body>
+
+</html>

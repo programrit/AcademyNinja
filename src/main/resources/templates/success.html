@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{user/head :: head}">
+
+</head>
+
+<body>
+	<div class="spinner-container">
+		<div class="spinner-border text-dark" role="status" style="width: 3rem; height: 3rem;">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+	<div class="container loading">
+		<div class="row">
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+				<div class="card border-0 shadow rounded-3 my-5">
+					<div class="card-body p-4 p-sm-5">
+						<div th:if="${success}">
+							<h5 class="text-center text-success mt-3" th:text="${success}"></h5>
+						</div>
+						<div th:if="${error}">
+							<h5 class="text-center text-danger mt-3" th:text="${error}"></h5>
+						</div>
+						<div class="mt-5 mb-4 text-center">
+							<a href="login" class="btn btn-primary">Back to login</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

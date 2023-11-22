@@ -1,0 +1,46 @@
+<main>
+	<div class="container-fluid px-4">
+		<h1 class="mt-4 mb-3">Add Course</h1>
+		<div class="row">
+			<div class="col-md-12">
+				<form action="/add-course" method="post" enctype="multipart/form-data">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+					<div class="d-flex justify-content-center">
+						<div class="form-floating mb-3 col-md-3 mx-2">
+							<input type="text" class="form-control course_name" id="floatingInput" name="course_name"
+								placeholder="Course name">
+							<label for="floatingInput">Course name</label>
+						</div>
+						<div class="form-floating mb-3 col-md-3 mx-2">
+							<input type="number" class="form-control course_price" id="floatingInput" name="course_price"
+								placeholder="Course price">
+							<label for="floatingInput">Course price</label>
+						</div>
+						<div class="form-floating mb-3 col-md-4 mx-2">
+							<input type="file" class="form-control course_video" multiple id="floatingInput" name="course_video"
+								placeholder="Course Video">
+							<label for="floatingInput">Course Video</label>
+						</div>
+					</div>
+					<div class="d-flex justify-content-center">
+						<div class="col-md-5 mx-3 form-floating">
+							<textarea class="form-control short_discription" placeholder="Leave a short description here" id="floatingTextarea1"
+								style="height: 200px"></textarea>
+							<label for="floatingTextarea1">Short description</label>
+						</div>
+						<div class="col-md-5 mx-3 form-floating">
+							<textarea class="form-control long_discription" placeholder="Leave a long discription here" id="floatingTextarea2"
+								style="height: 200px"></textarea>
+							<label for="floatingTextarea2">Long discription</label>
+						</div>
+					</div>
+					<div class="d-flex justify-content-center col-md-12 mt-5">
+							<button class="btn btn-primary text-uppercase fw-bold add_course mx-3" type="submit">Save
+							</button>
+							<button class="btn btn-danger text-uppercase fw-bold mx-3" type="reset">Cancel</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</main>

@@ -1,0 +1,55 @@
+<main>
+	<div class="container-fluid px-4">
+		<h1 class="mt-4 mb-3">View Course Table</h1>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card mb-4">
+					<div class="card-header">
+						<i class="fas fa-table me-1"></i>
+						DataTable Example
+					</div>
+					<div class="card-body">
+						<table id="datatablesSimple">
+							<thead>
+								<tr>
+									<th>S.No</th>
+									<th>Course Id</th>
+									<th>User Id</th>
+									<th>Course Generate Id</th>
+									<th>Course Name</th>
+									<th>Course Price</th>
+									<th>Payment Date & Time</th>
+									<th>Payment Status</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th>S.No</th>
+									<th>Course Id</th>
+									<th>User Id</th>
+									<th>Course Generate Id</th>
+									<th>Course Name</th>
+									<th>Course Price</th>
+									<th>Payment Date & Time</th>
+									<th>Payment Status</th>
+								</tr>
+							</tfoot>
+							<tbody>
+								<tr th:each="course,index : ${courses}">
+									<td th:text="${index.index+1}"></td>
+									<td th:text="${course.admin.id}"></td>
+									<td th:text="${course.user.id}"></td>
+									<td th:text="${course.courseRandomId}"></td>
+									<td th:text="${course.courseName}"></td>
+									<td th:text="${course.coursePrice}"></td>
+									<td th:text="${course.dateTime}"></td>
+									<td th:text="${course.status}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

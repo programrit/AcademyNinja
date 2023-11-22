@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{user/head :: head}">
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto mt-3">
+				<div class="card border-0 shadow rounded-3 my-5">
+					<div class="card-body p-4 p-sm-5 text-center">
+						<img src="" th:src="@{/images/400.jpg}" class="img-fluid rounded w-75 h-75">
+						<p class="text-muted mx-2">The request you are looking for does not exist</p>
+						<div class="d-grid mt-3">
+								<button class="btn btn-primary text-uppercase fw-bold"
+									type="button"><a href="/admin-dashboard" class="text-decoration-none text-white">Dashboard</a></button>
+						</div>			
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

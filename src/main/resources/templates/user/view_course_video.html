@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{user/head :: head}">
+
+</head>
+
+<body style="background: white;">
+	<div class="spinner-container">
+		<div class="spinner-border text-dark" role="status" style="width: 3rem; height: 3rem;">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+	<div class="loading">
+		<nav th:replace="~{user/navbar :: nav}"></nav>
+		<div class="mt-3 mb-2 mx-3">
+			<a href="/my-course" class="btn btn-light"><i class="fa-solid fa-arrow-left"></i></a>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div th:if="${myCourseVideo}" class="col-md-10 mt-3 mx-3">
+					<div th:each="video : ${myCourseVideo}" class="rounded">
+						<video style="background-color: black;" class="myVideos" controls width="400" height="300"
+							controlsList="nodownload">
+							<source th:src="@{'/videos/'+${video}}" type="video/mp4">
+							Your browser does not support the video.
+						</video>
+					</div>
+				</div>
+				<div th:unless="${myCourseVideo}" class="col-md-12">
+					<h4 class="text-center text-danger fw-bold mt-5">No Course</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="" th:src="@{/js/navigation.js}"></script>
+	<script src="" th:src="@{/js/job.js}"></script>
+</body>
+
+</html>

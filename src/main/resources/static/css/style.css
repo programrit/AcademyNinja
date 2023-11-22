@@ -1,0 +1,81 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	scroll-behavior: smooth;
+}
+body {
+  background: #007bff;
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+}
+
+.main{
+	position: relative;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-sizing: border-box;
+}
+
+.img{
+	height: 100vh;
+	width: 100%;
+}
+
+.header{
+	height: 100vh;
+	width: 100%;	
+}
+.about .contact, .jobs{
+	height: 100vh;
+	width: 100%;
+}
+
+#carouselExampleCaptions{
+	width: 100%;
+	height: 100vh;	
+}
+
+.carousel-item img{
+	height: 100vh;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;	
+}
+
+
+#about_us{
+	background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('/images/about-bg.jpg');
+	height: 100vh;
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#job_page{
+	background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url('/images/job-bg.jpg');
+	height: 100vh;
+	width: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#floatingTextarea2{
+	resize: none;
+}
+
+.spinner-container{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	z-index: 9999;
+	display: none;
+}
+
+
+
+

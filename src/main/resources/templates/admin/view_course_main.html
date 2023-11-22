@@ -1,0 +1,75 @@
+<main>
+	<div class="container-fluid px-4">
+		<h1 class="mt-4 mb-3">View Course Table</h1>
+		<div class="col-md-12 alert alert-danger text-center" role="alert" th:if="${error}">
+			[[${error}]]
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card mb-4">
+					<div class="card-header">
+						<i class="fas fa-table me-1"></i>
+						DataTable Example
+					</div>
+					<div class="card-body">
+						<table id="datatablesSimple">
+							<thead>
+								<tr>
+									<th>S.No</th>
+									<th>Course Id</th>
+									<th>Course Name</th>
+									<th>Course Price</th>
+									<th>Available</th>
+									<th>Short Description</th>
+									<th>Long Description</th>
+									<th>Course Video</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th>S.No</th>
+									<th>Course Id</th>
+									<th>Course Name</th>
+									<th>Course Price</th>
+									<th>Available</th>
+									<th>Short Description</th>
+									<th>Long Description</th>
+									<th>Course Video</th>
+									<th>Action</th>
+								</tr>
+							</tfoot>
+							<tbody>
+								<tr th:each="course,index : ${courses}">
+									<td th:text="${index.index+1}"></td>
+									<td th:text="${course.courseId}"></td>
+									<td th:text="${course.courseName}"></td>
+									<td th:text="${course.coursePrice}"></td>
+									<td th:text="${course.available}"></td>
+									<td th:text="${course.shortDescription}"></td>
+									<td th:text="${course.longDescription}"></td>
+									<td th:each="video : ${course.courseVideos}">
+										[[${video}]]
+									</td>
+									<td>
+										<form action="/view-course" method="post">
+											<input type="hidden" th:name="${_csrf.parameterName}"
+												th:value="${_csrf.token}">
+											<div class="d-flex justify-content-between">
+												<a href="" th:href="@{/update-course?ci=}+${course.courseId}" class="btn btn-primary text-decoration-none" type="button">
+													<i class="fa-solid fa-solid fa-pen-to-square"></i></a>
+												<button class="btn btn-danger delete_course" th:value="${course.courseId}" type="submit">
+													<i class="fa-solid fa-trash"></i>
+												</button>
+											</div>
+										</form>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

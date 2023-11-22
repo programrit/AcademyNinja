@@ -1,0 +1,97 @@
+<main>
+	<div class="container-fluid px-4">
+		<h1 class="mt-4 mb-3">Dashboard</h1>
+		<div class="row">
+			<div class="col-xl-3 col-md-6">
+				<div class="card bg-primary text-white mb-4">
+					<div class="card-body">Total no User</div>
+					<div class="card-footer d-flex align-items-center justify-content-between">
+						<h6 class="text-center fw-bolder" th:text="${noUser}"></h6>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-md-6">
+				<div class="card bg-warning text-white mb-4">
+					<div class="card-body">Toatl no Course</div>
+					<div class="card-footer d-flex align-items-center justify-content-between">
+						<h6 class="text-center fw-bolder" th:text="${noCourse}"></h6>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-md-6">
+				<div class="card bg-success text-white mb-4">
+					<div class="card-body">Total no Admin</div>
+					<div class="card-footer d-flex align-items-center justify-content-between">
+						<h6 class="text-center fw-bolder" th:text="${noAdmin}"></h6>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-md-6">
+				<div class="card bg-danger text-white mb-4">
+					<div class="card-body">Toatl no Purchasing Course</div>
+					<div class="card-footer d-flex align-items-center justify-content-between">
+						<h6 class="text-center fw-bolder" th:text="${noBuyCourse}"></h6>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card mb-4">
+			<div class="card-header">
+				<i class="fas fa-table me-1"></i>
+				DataTable Example
+			</div>
+			<div class="card-body">
+				<table id="datatablesSimple">
+					<thead>
+						<tr>
+							<th>S.No</th>
+							<th>User Id</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Password</th>
+							<th>Role</th>
+							<th>Profile</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>S.No</th>
+							<th>User Id</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Password</th>
+							<th>Role</th>
+							<th>Profile</th>
+							<th>Action</th>
+						</tr>
+					</tfoot>
+					<tbody>
+						<tr th:each="user,index : ${users}">
+							<td th:text="${index.index+1}"></td>
+							<td th:text="${user.userId}"></td>
+							<td th:text="${user.name}"></td>
+							<td th:text="${user.email}"></td>
+							<td th:text="${user.password}"></td>
+							<td th:text="${user.role}"></td>
+							<td class="text-center" th:if="${user.profile}">
+								<img th:src="@{'profile/'+${user.profile}}" width="50px" height="45px">
+							</td>
+							<td  th:unless="${user.profile}">
+								<p class="text-center mt-2 text-danger fw-bold">Null</p>
+							</td>
+							<td>
+								<form action="/admin-dashboard" method="post">
+									<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+									<button class="btn btn-danger delete_user" th:value="${user.userId}" type="submit">
+										<i class="fa-solid fa-trash"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</main>

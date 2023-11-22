@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{user/head :: head}"></head>
+
+<body style="background: white;">
+	<div class="spinner-container">
+		<div class="spinner-border text-dark" role="status" style="width: 3rem; height: 3rem;">
+			<span class="visually-hidden">Loading...</span>
+		</div>
+	</div>
+	<div class="loading">
+		<nav th:replace="~{user/navbar :: nav}"></nav>
+		<div th:replace="~{user/job_main_page :: section}"></div>
+
+	</div>
+	<script src="" th:src="@{/js/job.js}"></script>
+	<script th:inline="javascript" src="https://checkout.razorpay.com/v1/checkout.js"></script>
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			$(".buy").click(function (e) {
+				e.preventDefault();
+				var courseId = $(this).val();
+				var csrfToken = $('[name="_csrf"]').val();
+				if (csrfToken == "" || csrfToken == null) {
+					alertify.set('notifier', 'position', 'top-right');
+					alertify.error("Unauthorized person");
+				} else if (courseId == null || courseId == "") {
+					alertify.set('notifier', 'position', 'top-right');
+					alertify.error("Invalid course");
+				} else {
+					startLoading();
+					$.ajax({
+						type: "POST",
+						url: "/course",
+						data: {
+							courseId: courseId
+						},
+						beforeSend: function (xhr) {
+							xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+						}, success: function (response) {
+							stopLoading();
+							var data = JSON.parse(response);
+							openRezorpayCheckout(data.orderId, data.amount,/*[[@{${apiKey}}]]*/); // [[@{apiKey}]]
+						}, error: function (error) {
+							stopLoading();
+							alertify.set('notifier', 'position', 'top-right');
+							alertify.error(error.responseText);
+						}
+					});
+				}
+			});
+		});
+
+		function openRezorpayCheckout(orderId, amount, apiKey) {
+			var options = {
+				key: apiKey,
+				amount: amount * 100,
+				currency: 'INR',
+				order_id: orderId,
+				name: 'AcademyNinja',
+				"description": "Payment",
+				"image": "https://img.lovepik.com/element/45003/6056.png_300.png",
+				handler: function (response) {
+					if (response.error) {
+						startLoading();
+						$.ajax({
+							type: "POST",
+							url: "/payment",
+							data: {
+								status: false,
+								orderId: orderId
+							},
+							success: function (data) {
+								stopLoading();
+								alertify.set('notifier', 'position', 'top-right');
+								alertify.error(data);
+							}, error: function (error) {
+								stopLoading();
+								alertify.set('notifier', 'position', 'top-right');
+								alertify.error(error.responseText);
+							}
+						});
+					} else {
+						startLoading();
+						$.ajax({
+							type: "POST",
+							url: "/payment",
+							data: {
+								status: true,
+								orderId: orderId
+							},
+							success: function (data) {
+								stopLoading();
+								alertify.set('notifier', 'position', 'top-right');
+								alertify.success(data);
+							}, error: function (error) {
+								stopLoading();
+								alertify.set('notifier', 'position', 'top-right');
+								alertify.error(error.responseText);
+							}
+						});
+					}
+				},
+				theme: {
+					"color": "#528FF0"
+				}
+			};
+			var rzp = new Razorpay(options);
+			rzp.open();
+		}
+	</script>
+</body>
+
+</html>
